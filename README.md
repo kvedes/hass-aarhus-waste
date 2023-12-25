@@ -4,7 +4,7 @@ This repo shows how to integrate the waste collection schedule for properties in
 
 - Restaffald, madaffald
 - Pap, Papir, tekstil
-- Glas, Metal, Plast Mad- og drikkekartoner
+- Glas, Metal, Plast, Mad- og drikkekartoner
 
 The webpage exposes an API which is used by this integration.
 
@@ -15,7 +15,7 @@ The script runs once as a day, since the schedule is not expected to update ofte
 In order to make the script work, the first step is to identify the KVHX number for the given property. There is a utility script in this repo called `get_kvhx.py` which helps to identify the value, by looking up the property in DAWA.
 
 ```
-python get_kvhx.py "Tranekærvej 58, 8240"
+>>> python get_kvhx.py "Tranekærvej 58, 8240"
 Match: Tranekærvej 58, 8240
 KVHX: 07518746__58_______
 ```
