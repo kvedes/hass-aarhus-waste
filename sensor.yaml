@@ -1,0 +1,92 @@
+- platform: rest
+  name: Restaffald
+  method: GET
+  icon: "mdi:trash-can"
+  resource: https://portal-api.kredslob.dk/api/calendar/address/INSERT_KVHX
+  headers:
+    user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36
+  value_template: |
+    {% set pickups =  value_json[0]["plannedLoads"] %}
+    {% set expected = ["Restaffald", "Madaffald"]  %}
+    {% set expected_join = expected| join(",") %}
+    {% set filtered_list = namespace(data=[])  %}
+
+    {% for pickup in pickups %}
+      {% set pickup_join = pickup["fractions"]| join(",") %}
+      {% if expected_join == pickup_join %}
+        {% set filtered_list.data = filtered_list.data + [pickup] %}
+      {% endif %}
+    {% endfor %}
+    {% set time = filtered_list.data | map(attribute="date") | sort | first %}
+    {% set days_left = (strptime(time, "%Y-%m-%dT%H:%M:%S%z").date() - now().date() ).days %}
+    {% if days_left == 0 %}
+      i dag
+    {% elif days_left == 1 %}
+      i morgen
+    {% else %}
+      {{ days_left }} dage
+    {% endif %}
+  unique_id: skrald-restaffald-mad
+  scan_interval: 86400
+
+- platform: rest
+  name: Pap
+  method: GET
+  icon: "mdi:trash-can"
+  resource: https://portal-api.kredslob.dk/api/calendar/address/INSERT_KVHX
+  headers:
+    user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36
+  value_template: |
+    {% set pickups =  value_json[0]["plannedLoads"] %}
+    {% set expected = ["Papir", "Pap", "Tekstiler"]  %}
+    {% set expected_join = expected| join(",") %}
+    {% set filtered_list = namespace(data=[])  %}
+
+    {% for pickup in pickups %}
+      {% set pickup_join = pickup["fractions"]| join(",") %}
+      {% if expected_join == pickup_join %}
+        {% set filtered_list.data = filtered_list.data + [pickup] %}
+      {% endif %}
+    {% endfor %}
+    {% set time = filtered_list.data | map(attribute="date") | sort | first %}
+    {% set days_left = (strptime(time, "%Y-%m-%dT%H:%M:%S%z").date() - now().date() ).days %}
+    {% if days_left == 0 %}
+      i dag
+    {% elif days_left == 1 %}
+      i morgen
+    {% else %}
+      {{ days_left }} dage
+    {% endif %}
+  unique_id: skrald-pap-papir
+  scan_interval: 86400
+
+- platform: rest
+  name: Plast
+  method: GET
+  icon: "mdi:trash-can"
+  resource: https://portal-api.kredslob.dk/api/calendar/address/INSERT_KVHX
+  headers:
+    user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36
+  value_template: |
+    {% set pickups =  value_json[0]["plannedLoads"] %}
+    {% set expected = ["Plast", "Mad- og drikkekartoner", "Glas", "Metal"] %}
+    {% set expected_join = expected| join(",") %}
+    {% set filtered_list = namespace(data=[])  %}
+
+    {% for pickup in pickups %}
+      {% set pickup_join = pickup["fractions"]| join(",") %}
+      {% if expected_join == pickup_join %}
+        {% set filtered_list.data = filtered_list.data + [pickup] %}
+      {% endif %}
+    {% endfor %}
+    {% set time = filtered_list.data | map(attribute="date") | sort | first %}
+    {% set days_left = (strptime(time, "%Y-%m-%dT%H:%M:%S%z").date() - now().date() ).days %}
+    {% if days_left == 0 %}
+      i dag
+    {% elif days_left == 1 %}
+      i morgen
+    {% else %}
+      {{ days_left }} dage
+    {% endif %}
+  unique_id: skrald-plast
+  scan_interval: 86400
