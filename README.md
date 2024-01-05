@@ -8,7 +8,8 @@ This repo shows how to integrate the waste collection schedule for properties in
 
 The webpage exposes an API which is used by this integration.
 
-The script runs once as a day, since the schedule is not expected to update often.
+The script runs 4 times a day, since the schedule is not expected to update often. Initially it only ran once, however this meant that if it ran in the evening, the following day the schedule would be off until the evening.
+In order to change the frequency, update the `scan_interval` field which should be in seconds.
 
 ## How to
 

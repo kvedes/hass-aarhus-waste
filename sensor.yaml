@@ -27,7 +27,7 @@
       {{ days_left }} dage
     {% endif %}
   unique_id: skrald-restaffald-mad
-  scan_interval: 86400
+  scan_interval: 21600
 
 - platform: rest
   name: Pap
@@ -58,7 +58,7 @@
       {{ days_left }} dage
     {% endif %}
   unique_id: skrald-pap-papir
-  scan_interval: 86400
+  scan_interval: 21600
 
 - platform: rest
   name: Plast
@@ -89,4 +89,4 @@
       {{ days_left }} dage
     {% endif %}
   unique_id: skrald-plast
-  scan_interval: 86400
+  scan_interval: 21600
