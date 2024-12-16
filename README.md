@@ -21,7 +21,7 @@ Match: Tranekærvej 58, 8240
 KVHX: 07518746__58_______
 ```
 
-Copy the KVHX number and insert it into the `sensor.yaml` file under the `resource` as:
+Copy the KVHX number and insert it into the `waste-sensor.yaml` file under the `resource` as:
 
 ```
 resource: https://portal-api.kredslob.dk/api/calendar/address/07518746__58_______
