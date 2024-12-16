@@ -27,7 +27,7 @@ Copy the KVHX number and insert it into the `waste-sensor.yaml` file under the `
 resource: https://portal-api.kredslob.dk/api/calendar/address/07518746__58_______
 ```
 
-This should be done three times, as there are three sensors.
+This should be done once, in line 7 in `waste-sensor.yaml`
 
 Next step is to copy the `sensor.yaml` file into your Homeassistant configuration directory, typically `~/.homeassistant` and add the following line to `configuration.yaml`:
 
