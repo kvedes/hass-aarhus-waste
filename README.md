@@ -29,8 +29,9 @@ resource: https://portal-api.kredslob.dk/api/calendar/address/07518746__58______
 
 This should be done once, in line 7 in `waste-sensor.yaml`
 
-Next step is to copy the `sensor.yaml` file into your Homeassistant configuration directory, typically `~/.homeassistant` and add the following line to `configuration.yaml`:
+Next step is to copy the `waste-sensor.yaml` file into your Homeassistant configuration directory, typically `~/.homeassistant` and add the following line to `configuration.yaml`:
 
 ```
-sensor: !include sensor.yaml
+sensor: !include waste-sensor.yaml
 ```
+To present the data in your Home Assistant dashboard add the code from 'cardconfig.yaml' as a manual card in Home Assistant.
