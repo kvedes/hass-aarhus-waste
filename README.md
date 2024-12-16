@@ -1,3 +1,5 @@
+![image](https://github.com/user-attachments/assets/39c5c30a-3eaa-444b-b9c1-8f8ab1c21e76)
+
 # Homeassistant Waste Collection Aarhus
 
 This repo shows how to integrate the waste collection schedule for properties in Aarhus into Homeassistant. It fetches the schedule from [Kredsløb](https://www.kredslob.dk/produkter-og-services/genbrug-og-affald/affaldsbeholdere/toemmekalender) which exposes the schedules for the categories (Category names in Danish):
@@ -35,3 +37,4 @@ Next step is to copy the `waste-sensor.yaml` file into your Homeassistant config
 sensor: !include waste-sensor.yaml
 ```
 To present the data in your Home Assistant dashboard add the code from 'cardconfig.yaml' as a manual card in Home Assistant.
+
