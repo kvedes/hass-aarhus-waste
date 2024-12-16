@@ -1,0 +1,169 @@
+sensor:
+    #waste-rest-sensor => see template sensors in waste-template-sensors.yaml
+  - platform: rest
+    name: Affald
+    method: GET
+    icon: "mdi:trash-can"
+    resource: https://portal-api.kredslob.dk/api/calendar/address/07518746__58_______
+    headers:
+      user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36
+    value_template: "{{ 'Updated ' + now().strftime('%Y-%m-%d %H:%M:%S') }}"
+    json_attributes:
+      - plannedLoads
+    unique_id: waste-rest-sensor
+    scan_interval: 21600
+
+template:
+  - trigger:
+      - platform: state
+        entity_id: sensor.affald
+    sensor:
+      - name: "Restaffald"
+        unique_id: skrald-restaffald-mad
+        icon: "mdi:trash-can"
+        state: >
+          {% set pickups = state_attr('sensor.affald', 'plannedLoads') %}
+          {% if pickups %}
+            {% set expected = ["Restaffald", "Madaffald"] %}
+            {% set filtered_list = pickups | selectattr("fractions", "equalto", expected) | list %}
+            {% set time = filtered_list | map(attribute="date") | sort | first %}
+            {% if time %}
+              {% set days_left = (strptime(time, "%Y-%m-%dT%H:%M:%S%z").date() - now().date()).days %}
+              {% if days_left == 0 %}
+                i dag
+              {% elif days_left == 1 %}
+                i morgen
+              {% else %}
+                {{ days_left }} dage
+              {% endif %}
+            {% else %}
+              unknown
+            {% endif %}
+          {% else %}
+            unknown
+          {% endif %}
+        attributes:
+          days_left: >
+            {% set pickups = state_attr('sensor.affald', 'plannedLoads') %}
+            {% if pickups %}
+              {% set expected = ["Restaffald", "Madaffald"] %}
+              {% set filtered_list = pickups | selectattr("fractions", "equalto", expected) | list %}
+              {% set time = filtered_list | map(attribute="date") | sort | first %}
+              {% if time %}
+                {{ (strptime(time, "%Y-%m-%dT%H:%M:%S%z").date() - now().date()).days }}
+              {% else %}
+                unknown
+              {% endif %}
+            {% else %}
+              unknown
+            {% endif %}
+          next_pickup_date: >
+            {% set pickups = state_attr('sensor.affald', 'plannedLoads') %}
+            {% if pickups %}
+              {% set expected = ["Restaffald", "Madaffald"] %}
+              {% set filtered_list = pickups | selectattr("fractions", "equalto", expected) | list %}
+              {% set time = filtered_list | map(attribute="date") | sort | first %}
+              {{ time if time else 'unknown' }}
+            {% else %}
+              unknown
+            {% endif %}
+
+      - name: "Pap"
+        unique_id: skrald-pap-papir
+        icon: "mdi:trash-can"
+        state: >
+          {% set pickups = state_attr('sensor.affald', 'plannedLoads') %}
+          {% if pickups %}
+            {% set expected = ["Papir", "Pap", "Tekstiler"] %}
+            {% set filtered_list = pickups | selectattr("fractions", "equalto", expected) | list %}
+            {% set time = filtered_list | map(attribute="date") | sort | first %}
+            {% if time %}
+              {% set days_left = (strptime(time, "%Y-%m-%dT%H:%M:%S%z").date() - now().date()).days %}
+              {% if days_left == 0 %}
+                i dag
+              {% elif days_left == 1 %}
+                i morgen
+              {% else %}
+                {{ days_left }} dage
+              {% endif %}
+            {% else %}
+              unknown
+            {% endif %}
+          {% else %}
+            unknown
+          {% endif %}
+        attributes:
+          days_left: >
+            {% set pickups = state_attr('sensor.affald', 'plannedLoads') %}
+            {% if pickups %}
+              {% set expected = ["Papir", "Pap", "Tekstiler"] %}
+              {% set filtered_list = pickups | selectattr("fractions", "equalto", expected) | list %}
+              {% set time = filtered_list | map(attribute="date") | sort | first %}
+              {% if time %}
+                {{ (strptime(time, "%Y-%m-%dT%H:%M:%S%z").date() - now().date()).days }}
+              {% else %}
+                unknown
+              {% endif %}
+            {% else %}
+              unknown
+            {% endif %}
+          next_pickup_date: >
+            {% set pickups = state_attr('sensor.affald', 'plannedLoads') %}
+            {% if pickups %}
+              {% set expected = ["Papir", "Pap", "Tekstiler"] %}
+              {% set filtered_list = pickups | selectattr("fractions", "equalto", expected) | list %}
+              {% set time = filtered_list | map(attribute="date") | sort | first %}
+              {{ time if time else 'unknown' }}
+            {% else %}
+              unknown
+            {% endif %}
+
+      - name: "Plast"
+        unique_id: skrald-plast
+        icon: "mdi:trash-can"
+        state: >
+          {% set pickups = state_attr('sensor.affald', 'plannedLoads') %}
+          {% if pickups %}
+            {% set expected = ["Plast", "Mad- og drikkekartoner", "Glas", "Metal"] %}
+            {% set filtered_list = pickups | selectattr("fractions", "equalto", expected) | list %}
+            {% set time = filtered_list | map(attribute="date") | sort | first %}
+            {% if time %}
+              {% set days_left = (strptime(time, "%Y-%m-%dT%H:%M:%S%z").date() - now().date()).days %}
+              {% if days_left == 0 %}
+                i dag
+              {% elif days_left == 1 %}
+                i morgen
+              {% else %}
+                {{ days_left }} dage
+              {% endif %}
+            {% else %}
+              unknown
+            {% endif %}
+          {% else %}
+            unknown
+          {% endif %}
+        attributes:
+          days_left: >
+            {% set pickups = state_attr('sensor.affald', 'plannedLoads') %}
+            {% if pickups %}
+              {% set expected = ["Plast", "Mad- og drikkekartoner", "Glas", "Metal"] %}
+              {% set filtered_list = pickups | selectattr("fractions", "equalto", expected) | list %}
+              {% set time = filtered_list | map(attribute="date") | sort | first %}
+              {% if time %}
+                {{ (strptime(time, "%Y-%m-%dT%H:%M:%S%z").date() - now().date()).days }}
+              {% else %}
+                unknown
+              {% endif %}
+            {% else %}
+              unknown
+            {% endif %}
+          next_pickup_date: >
+            {% set pickups = state_attr('sensor.affald', 'plannedLoads') %}
+            {% if pickups %}
+              {% set expected = ["Plast", "Mad- og drikkekartoner", "Glas", "Metal"] %}
+              {% set filtered_list = pickups | selectattr("fractions", "equalto", expected) | list %}
+              {% set time = filtered_list | map(attribute="date") | sort | first %}
+              {{ time if time else 'unknown' }}
+            {% else %}
+              unknown
+            {% endif %}
