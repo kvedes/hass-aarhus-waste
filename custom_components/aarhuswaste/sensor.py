@@ -5,8 +5,8 @@ from homeassistant.core import HomeAssistant
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
-from custom_components.dkwaste.model import Schedule, TrashType
-from custom_components.dkwaste.domain import DOMAIN
+from custom_components.aarhuswaste.model import Schedule, TrashType
+from custom_components.aarhuswaste.domain import DOMAIN
 from datetime import datetime, date
 
 AsyncAddEntities = Callable[[Iterable[Entity], bool], None]

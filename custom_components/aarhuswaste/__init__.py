@@ -1,8 +1,8 @@
 from datetime import timedelta
 from homeassistant.core import HomeAssistant
 from homeassistant.config_entries import ConfigEntry
-from custom_components.dkwaste.coordinator import RestCoordinator
-from custom_components.dkwaste.domain import DOMAIN, PLATFORMS
+from custom_components.aarhuswaste.coordinator import RestCoordinator
+from custom_components.aarhuswaste.domain import DOMAIN, PLATFORMS
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up dkwaste from a config entry."""

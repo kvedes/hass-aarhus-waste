@@ -1,6 +1,6 @@
 import pytest
 import json
-from custom_components.dkwaste.model import Schedule
+from custom_components.aarhuswaste.model import Schedule
 
 @pytest.fixture
 def data():
