@@ -7,7 +7,5 @@
     "config_flow": true,
     "codeowners": [
         "@kvedes"
-    ],
-    "icon": "icons/aarhus.png",
-    "logo": "icons/aarhus.png"
+    ]
 }
