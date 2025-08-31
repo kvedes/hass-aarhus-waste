@@ -1,0 +1,11 @@
+{
+    "domain": "aarhuswaste",
+    "name": "Aarhus Waste",
+    "version": "0.1.0",
+    "requirements": [],
+    "dependencies": [],
+    "config_flow": true,
+    "codeowners": [
+        "@kvedes"
+    ]
+}
