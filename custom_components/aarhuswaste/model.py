@@ -1,9 +1,9 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from datetime import date, datetime
-from enum import StrEnum
+from enum import Enum
 
-class TrashType(StrEnum):
+class TrashType(Enum):
     GENERAL = "general"
     PAPER = "paper"
     PLASTIC = "plactic"
@@ -14,7 +14,7 @@ class TrashType(StrEnum):
             return TrashType.GENERAL
         elif data == ["Plast", "Mad- og drikkekartoner", "Glas", "Metal"]:
             return TrashType.PLASTIC
-        elif data == ["Papir","Pap","Tekstiler"]:
+        elif data == ["Papir", "Pap", "Tekstiler"]:
             return TrashType.PAPER
         else:
             raise ValueError(f"Invalid trash type input: {data}!")

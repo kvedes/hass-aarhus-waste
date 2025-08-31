@@ -25,7 +25,7 @@ class GarbageScheduleDateSensor(CoordinatorEntity, SensorEntity): # type: ignore
     def __init__(self, coordinator: DataUpdateCoordinator, trash_type: TrashType):
         super().__init__(coordinator)
         self._trash_type = trash_type
-        self._attr_name = f"Garbage Pickup Date ({trash_type})"
+        self._attr_name = f"Garbage Pickup Date ({trash_type.value})"
         #self._attr_native_value
 
     @property
@@ -40,7 +40,7 @@ class GarbageScheduleDeltaSensor(CoordinatorEntity, SensorEntity): # type: ignor
     def __init__(self, coordinator: DataUpdateCoordinator, trash_type: TrashType):
         super().__init__(coordinator)
         self._trash_type = trash_type
-        self._attr_name = f"Garbage Pickup Days Left ({trash_type})"
+        self._attr_name = f"Garbage Pickup Days Left ({trash_type.value})"
         #self._attr_native_value
 
     @property
