@@ -217,5 +217,5 @@ __marimo__/
 
 # Home assistant config
 config/
-
+data/
 poetry.lock
