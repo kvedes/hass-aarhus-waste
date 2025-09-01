@@ -32,6 +32,11 @@ Each sensor type comes in three variants corresponding to the types of trash bin
 - Plastic: Covers plastics, food cartons, glass and metal (Plast, mad- og drikkekartoner, glas and metal in Danish)
 - Paper: Covers paper, cardboard and textiles (Papir, pap and tekstiler in Danish)
 
+## Supported versions
+
+The integration has been tested with the latest version `2025.8.3` and `2024.12.0`.
+
+
 ## Legacy version
 
 This project was previously based on a REST sensor configured purely in YAML. If you want to use this instead please checkout the v0.1.0 tag on this repo.
